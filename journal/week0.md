@@ -15,7 +15,7 @@
 
 ### Create an Admin User
 
-I have create an user in my AWS account which is part of an group which has a policy "AdministratorAccess".
+I have created a user in my AWS account which is part of a group which has an AWS managed policy "AdministratorAccess".
 
 ### Use CloudShell
 
