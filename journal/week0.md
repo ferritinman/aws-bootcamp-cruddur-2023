@@ -35,8 +35,12 @@ I have installed the AWS CLI on gitpod as per the Youtube video and updating the
 
 ###	Create a Billing Alarm
 
-TODO
+I initially created a CloudWatch billing alarm manually and then through the CLI.
+
+![Proof](assets/week0/cloudwatch_alarm.png)
 
 ###	Create a Budget
 
-TODO
+I initially create budgets through the console and then through the CLI.
+
+![Proof](assets/week0/budget.png)
