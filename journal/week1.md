@@ -48,7 +48,7 @@ $ psql -U postgres -h localhost postgres
 
 - Created a simple file called Dockerfile.date (it's not the default name but it's easier for me to distinguish for homework challenges)
 
-- Unfortunately, I was unable to make "banner" print my username without the space.  It's just a limitation I will have to live with.
+- Unfortunately, I was unable to make "banner" print my username on one line without cutting off, so I used a space. It's just a limitation I will have to live with.
 
 - I'm not exactly sure how I installed a version of docker build with build kit (hence, the buildx), so I read up on it a bit. [BuildKit](https://docs.docker.com/build/buildkit/)
 
@@ -58,7 +58,7 @@ $ psql -U postgres -h localhost postgres
 
 - I already had a previous DockerHub account from long ago.  This was pretty straight forward
 
-```
+```bash
 $ docker login --username victorlouiedev
 
 $ docker image ls
@@ -79,7 +79,51 @@ $ docker push victorlouiedev/date:1.0.0
 
 ### Use multi-stage building for a Dockerfile build
 
+- I created a Dockerfile called Dockerfile.multi which is downloads a G.I. Joe logo from the Hasbro website and serves it on a webserver
+
+- There are two issues I found with the file I created below
+
+    1. CMD does not seem to work (I haven't figure this out yet).  Used RUN instead.
+    2. EXPOSE 8000 is incorrect because default nginx configuration listens on port 80 
+
+```dockerfile
+FROM alpine AS downloader
+WORKDIR /downloads
+RUN apk --no-cache add curl
+CMD ["curl", "-o", "image.png",  "https://gijoe.hasbro.com/images/nav-gijoe-logo.png" ]
+
+FROM nginx:stable-alpine
+COPY --from=downloader /downloads/image.png /usr/share/nginx/html/image.png
+EXPOSE 8000
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+- This is functioning version
+```dockerfile
+FROM alpine AS downloader
+WORKDIR /downloads
+RUN apk --no-cache add curl
+RUN curl -o image.png https://gijoe.hasbro.com/images/nav-gijoe-logo.png
+
+FROM nginx:stable-alpine
+COPY --from=downloader /downloads/image.png /usr/share/nginx/html/image.png
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+- Building and running it
+```bash
+$ docker buildx build -t multi -f Dockerfile.multi . && \
+     docker run -p 8000:80 --rm -it multi
+```
+
+![](assets/week01/go_joe.png)
+
 ### Implement a healthcheck in the V3 Docker compose file
+
+- I did this one at work for Postgres, steps were similiar to [https://laurent-bel.medium.com/waiting-for-postgresql-to-start-in-docker-compose-c72271b3c74a]()
+
+- Did have time to complete a working example this week
 
 ### Research best practices of Dockerfiles and attempt to implement it in your Dockerfile
 
@@ -106,3 +150,5 @@ EOF
 ![Docker install](assets/week01/docker_install.png)
 
 ### Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes. 
+
+- For the sake of time, I will skip it this week but it looks pretty straight forward
