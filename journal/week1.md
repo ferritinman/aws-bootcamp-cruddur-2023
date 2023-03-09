@@ -123,7 +123,7 @@ $ docker buildx build -t multi -f Dockerfile.multi . && \
 
 - I did this one at work for Postgres, steps were similiar to [https://laurent-bel.medium.com/waiting-for-postgresql-to-start-in-docker-compose-c72271b3c74a]()
 
-- Did have time to complete a working example this week
+- Did not have time to complete a working example
 
 ### Research best practices of Dockerfiles and attempt to implement it in your Dockerfile
 
@@ -151,4 +151,4 @@ EOF
 
 ### Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes. 
 
-- For the sake of time, I will skip it this week but it looks pretty straight forward
+- For the sake of time, I will skip it this week but I have one done this at a certain point at work.
