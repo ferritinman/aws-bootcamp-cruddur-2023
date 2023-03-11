@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#!/usr/bin/bash
 
 CYAN='\033[1;36m'
 NO_COLOR='\033[0m'
@@ -19,3 +19,4 @@ fi
 echo $URL
 
 psql $URL cruddur < $seed_path
+  
