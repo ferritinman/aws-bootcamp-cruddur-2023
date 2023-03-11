@@ -2,7 +2,7 @@
 
 ## Required Homework/Tasks
 
-## Setup Cognito User Pool
+### Setup Cognito User Pool
 
 I got the opportunity to setup the Cognito User Pools 4x. It was good practice.
 
@@ -16,25 +16,23 @@ The following is CLI command to remove the "Force change password" state on the 
 
 ### Implement Custom Signup Page
 
-No issues with this task as I was following the video.
+No issues with this task as I was following along with the video.
 
 ### Implement Custom Confirmation Page
 
-No issues with this task as I was following the video.
+No issues with this task as I was following along with the video.
 
 ### Implement Custom Recovery Page
 
-No issues with this task as I was following the video.
+No issues with this task as I was following along with the video.
 
 ### Implement backend Flask with JWT (video not on watch list)
 
-No issues with this task as I was following the video.
+This gave me a good start on understanding some of the magic JWT token stuff at work. It really helped pulling that code out of the library.  My code could be cleaned up a bit.  I deviated a little bit but the code does work.  I'll have to look into Flask/Python best practices because it feels like I'm hacking code.
 
 ### Watch about different approaches to verifying JWTs
 
-I watched a video about varying levels of architecting the application with differing levels of coupling/decoupling the Flask application and JWT service.
-
-- Find some articles about side car design patterns
+I watched the video about architecting the application with differing levels of coupling/decoupling the Flask application and JWT service.
 
 I've been having trouble with running docker compose up with GitPod.  Not exactly sure what is going on.
 
@@ -63,6 +61,14 @@ created by golang.org/x/sync/errgroup.(*Group).Go
  *  The terminal process "/usr/bin/bash '-c', 'docker compose -f "docker-compose.yml" up -d --build'" terminated with exit code: 2. 
  *  Terminal will be reused by tasks, press any key to close it. 
 ```
-
+Update 2023-03-10 - Gitpod seems to have fixed itself
 
 ## Homework Challenges
+
+I am starting to run out of credits for GitPod, troubleshooting the issue above so I've decided to shelve any GitPod development this week. 
+
+I did try to run docker compose locally but didn't get it completely working.  There is something that got installed that found some errors in my js code that I had to fix from this  [checkin](https://github.com/ferritinman/aws-bootcamp-cruddur-2023/commit/ad20c66445fc464a1ce794406e63d5f476e1b63e)
+
+Not sure if it counts, but I followed your video and fixed the CSS for better contrasts in the UI.
+
+I did some research on the "Sidecar" design pattern on [https://learn.microsoft.com/en-us/azure/architecture/patterns/sidecar](https://learn.microsoft.com/en-us/azure/architecture/patterns/sidecar)
