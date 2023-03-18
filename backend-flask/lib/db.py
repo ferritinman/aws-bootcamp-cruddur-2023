@@ -3,6 +3,7 @@ import os
 import sys
 import re
 from flask import current_app as app
+import psycopg
 
 class Db:
   def __init__(self):
@@ -117,7 +118,7 @@ class Db:
     print ("psycopg traceback:", traceback, "-- type:", err_type)
 
     # print the pgcode and pgerror exceptions
-    print ("pgerror:", err.pgerror)
-    print ("pgcode:", err.pgcode, "\n")
+    # print ("pgerror:", err.pgerror)
+    # print ("pgcode:", err.pgcode, "\n")
 
 db = Db()
