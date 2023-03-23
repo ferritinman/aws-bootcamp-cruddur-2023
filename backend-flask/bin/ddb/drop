@@ -1,66 +1,27 @@
-#!/usr/bin/env python3
+#!/usr/bin/bash
 
-import boto3
-import sys
+set -e
 
-attrs = {
-    'endpoint_url': 'http://localhost:8000'
-}
-if len(sys.argv) == 2:
-  if "prod" in sys.argv[1]:
-    attrs = {}
+# ./bin/ddb/drop cruddur-messages prod
 
-dynamodb = boto3.client('dynamodb', **attrs)
-table_name = 'cruddur-message'
 
-response = client.create_table(
-  TableName=table_name,
-  AttributeDefinitions=[
-      {
-          'AttributeName': 'pk',
-          'AttributeType': 'S'
-      },
-      {
-          'AttributeName': 'sk',
-          'AttributeType': 'S'
-      },
-  ],
-  KeySchema=[
-      {
-          'AttributeName': 'pk',
-          'KeyType': 'HASH'
-      },
-      {
-          'AttributeName': 'sk',
-          'KeyType': 'RANGE'
-      },      
-  ],
-  # GlobalSecondaryIndexes=[
-  #     {
-  #         'IndexName': 'string',
-  #         'KeySchema': [
-  #             {
-  #                 'AttributeName': 'string',
-  #                 'KeyType': 'HASH'|'RANGE'
-  #             },
-  #         ],
-  #         'Projection': {
-  #             'ProjectionType': 'ALL'|'KEYS_ONLY'|'INCLUDE',
-  #             'NonKeyAttributes': [
-  #                 'string',
-  #             ]
-  #         },
-  #         'ProvisionedThroughput': {
-  #             'ReadCapacityUnits': 123,
-  #             'WriteCapacityUnits': 123
-  #         }
-  #     },
-  # ],
-  BillingMode='PROVISIONED',
-  ProvisionedThroughput={
-      'ReadCapacityUnits': 5,
-      'WriteCapacityUnits': 5
-  }
-)
+if [ -z "$1" ]
+then
+  echo "No TABLE_NAME argument supplied eg  ./bin/ddb/drop cruddur-messages prod"
+  exit 1
+else
+  TABLE_NAME=$1
+fi
 
-print(response)
+
+if [ "$2" = "prod" ]
+then
+  ENDPOINT_URL=""
+else
+  ENDPOINT_URL="--endpoint-url=http://localhost:8000"
+fi
+
+echo "Deleting table: $TABLE_NAME"
+
+aws dynamodb delete-table $ENDPOINT_URL \
+--table-name $TABLE_NAME
