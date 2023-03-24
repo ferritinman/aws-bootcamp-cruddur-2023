@@ -9,7 +9,7 @@ class Db:
   def __init__(self):
     self.init_pool()
 
-  def template(self,*args):
+  def template(self, *args):
     pathing = list((app.root_path,'db','sql',) + args)
     pathing[-1] = pathing[-1] + ".sql"
 
@@ -92,11 +92,11 @@ class Db:
 
   # when we want to return a a single value
   def query_value(self,sql,params={}):
-    self.print_sql('value',sql,params)
+    self.print_sql('value',sql, params)
 
     with self.pool.connection() as conn:
       with conn.cursor() as cur:
-        cur.execute(sql,params)
+        cur.execute(sql, params)
         json = cur.fetchone()
         return json[0]
 
