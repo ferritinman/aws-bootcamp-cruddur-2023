@@ -141,11 +141,14 @@ def data_message_groups():
       app.logger.debug(claims)
       cognito_user_id = claims['sub']
       model = MessageGroups.run(cognito_user_id=cognito_user_id)
+
+      if model['errors'] is not None:
+        return model['errors'], 422
+      else:
+        return model['data'], 200
   except TokenVerifyError as e:
       app.logger.debug(e)
       return {}, 401
-
-  return data, 200
 
 
   # user_handle  = 'andrewbrown'
