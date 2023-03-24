@@ -27,7 +27,7 @@ def get_my_user_uuid():
       users.uuid
     FROM users
     WHERE
-      users.handle = %(handle)s
+      users.handle = %(handle)s 
   """
   user = db.query_value(sql,{
     'handle':  'andrewbrown'
@@ -42,6 +42,7 @@ print(f"My UUID: {my_user_uuid}")
 query_params = {
   'TableName': table_name,
   'KeyConditionExpression': 'pk = :pk',
+  'ScanIndexForward': False,
   'ExpressionAttributeValues': {
     ':pk': {'S': f"GRP#{my_user_uuid}"}
   },
