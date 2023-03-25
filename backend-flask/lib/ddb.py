@@ -16,15 +16,19 @@ class Ddb:
 
   def list_message_groups(client,my_user_uuid):
     table_name = 'cruddur-messages'
+    current_year = str(datetime.datetime.now().year)
     query_params = {
       'TableName': table_name,
-      'KeyConditionExpression': 'pk = :pk',
+      'KeyConditionExpression': 'pk = :pk AND begins_with(sk, :year)',
       'ScanIndexForward': False,
       'Limit': 20,
       'ExpressionAttributeValues': {
-        ':pk': {'S': f"GRP#{my_user_uuid}"}
+        ':pk': {'S': f"GRP#{my_user_uuid}"},
+        ':year': {'S': current_year},
       }
     }
+
+    print('------------------------------------------------')
     print('query-params')
     print(query_params)
     print('client')
@@ -48,19 +52,22 @@ class Ddb:
 
   def list_messages(client,message_group_uuid):
     table_name = 'cruddur-messages'
+    current_year = str(datetime.datetime.now().year)
+
     query_params = {
       'TableName': table_name,
-      'KeyConditionExpression': 'pk = :pkey',
+      'KeyConditionExpression': 'pk = :pk AND begins_with(sk, :year)',
       'ScanIndexForward': False,
       'Limit': 20,
       'ExpressionAttributeValues': {
-        ':pkey': {'S': f"MSG#{message_group_uuid}"}
+        ':pk': {'S': f"MSG#{message_group_uuid}"},
+        ':year': {'S': current_year},
       }
     }
 
     response = client.query(**query_params)
     items = response['Items']
-    
+    items.reverse()
     results = []
     for item in items:
       created_at = item['sk']['S']
@@ -72,6 +79,7 @@ class Ddb:
         'created_at': created_at
       })
     return results
+    
   # creates message_group and message
   def create_message_group(client, message,my_user_uuid, my_user_display_name, my_user_handle, other_user_uuid, other_user_display_name, other_user_handle):
     table_name = 'cruddur-messages'
@@ -149,6 +157,9 @@ class Ddb:
       TableName=table_name,
       Item=record
     )
+
+    # TODO: Check if the put works
+
     # print the response
     print(response)
     return {
@@ -158,4 +169,4 @@ class Ddb:
       'handle':  my_user_handle,
       'message': message,
       'created_at': created_at
-    } 
+    }
