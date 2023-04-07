@@ -1,0 +1,23 @@
+#!/usr/bin/bash
+
+# Gets the ECS Task ARN
+#  aws ecs list-tasks --cluster cruddur
+#
+# Parse out the ARN for the last section
+
+if [ -z "$1" ]
+then
+  echo "No TASK_ID argument supplied eg  ./bin/ecs/connect-to-frontend-react-js _#task_id#_"
+  exit 1
+fi
+TASK_ID=$1
+
+CONTAINER_NAME=frontend-react-js
+
+aws ecs execute-command  \
+--region $AWS_DEFAULT_REGION \
+--cluster cruddur \
+--task $TASK_ID \
+--container $CONTAINER_NAME \
+--command "/bin/sh" \
+--interactive
