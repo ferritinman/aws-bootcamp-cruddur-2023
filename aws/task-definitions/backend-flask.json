@@ -44,8 +44,8 @@
           {"name": "OTEL_EXPORTER_OTLP_ENDPOINT", "value": "https://api.honeycomb.io"},
           {"name": "AWS_COGNITO_USER_POOL_ID", "value": "ca-central-1_czgFEqfTX"},
           {"name": "AWS_COGNITO_USER_POOL_CLIENT_ID", "value": "17vmh2l62n9k69guut80jtnqsi"},
-          {"name": "FRONTEND_URL", "value": "*"},
-          {"name": "BACKEND_URL", "value": "*"},
+          {"name": "FRONTEND_URL", "value": "ferritinman.com"},
+          {"name": "BACKEND_URL", "value": "api.ferritinman.com"},
           {"name": "AWS_DEFAULT_REGION", "value": "ca-central-1"}
         ],
         "secrets": [
