@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+ #!/usr/bin/bash
 
 # Gets the ECS Task ARN
 #  aws ecs list-tasks --cluster cruddur
