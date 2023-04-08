@@ -65,7 +65,7 @@ export default function ConfirmationPage() {
     code_button = <button className="resend" onClick={resend_code}>Resend Activation Code</button>;
   }
 
-  React.useEffect(()=>{
+  React.useEffect(()=>{ 
     if (params.email) {
       setEmail(params.email)
     }
