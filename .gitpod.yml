@@ -43,6 +43,9 @@ tasks:
   - name: thumbing-lambda
     command: |
       "${THEIA_WORKSPACE_ROOT}/bin/avatar/build"
+  - name: docker
+    command: |
+      "${THEIA_WORKSPACE_ROOT}/bin/ecr/login"
     
 vscode:
   extensions:
