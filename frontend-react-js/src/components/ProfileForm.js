@@ -13,9 +13,67 @@ export default function ProfileForm(props) {
     setDisplayName(props.profile.display_name);
   }, [props.profile])
 
-  const s3upload = async(event)=> {
-
+  const s3uploadkey = async (extension)=> {
+    console.log('ext',extension)
+    try {
+      const gateway_url = "https://tcv5z1x3qk.execute-api.ca-central-1.amazonaws.com/avatars/key_upload"
+      // const gateway_url = `${process.env.REACT_APP_API_GATEWAY_ENDPOINT_URL}/avatars/key_upload`
+      await getAccessToken()
+      const access_token = localStorage.getItem("access_token")
+      // const json = {
+      //   extension: extension
+      // }
+      const res = await fetch(gateway_url, {
+        method: "POST",
+   //     body: JSON.stringify(json),
+        headers: {
+          'Origin': "https://3000-ferritinman-awsbootcamp-qkcviw282v3.ws-us95.gitpod.io", //process.env.REACT_APP_FRONTEND_URL,
+          'Authorization': `Bearer ${access_token}`,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      let data = await res.json();
+      if (res.status === 200) {
+        return data.url
+      } else {
+        console.log(res)
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  const s3upload = async (event)=> {
+    console.log('event',event)
     
+    const file = event.target.files[0]
+    const filename = file.name
+    const size = file.size
+    const type = file.type
+    const preview_image_url = URL.createObjectURL(file)
+    
+    console.log(filename,size,type)
+    
+    const fileparts = filename.split('.')
+    const extension = fileparts[fileparts.length-1]
+    const presignedurl = await s3uploadkey(extension)
+
+    try {
+      console.log('s3upload')
+      const res = await fetch(presignedurl, {
+        method: "PUT",
+        body: file,
+        headers: {
+          'Content-Type': type
+      }})
+      if (res.status === 200) {
+        
+      } else {
+        console.log(res)
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   const onsubmit = async (event) => {
@@ -78,8 +136,12 @@ export default function ProfileForm(props) {
             </div>
           </div>
           <div className="popup_content">
-            <div class="upload" onClick={s3upload}>
-              Upload Avatar
+            <div className="upload" onClick={s3uploadkey}>
+              Upload Avatar Key
+            </div>
+            <input type="file" name="avatarupload" onChange={s3upload} accept="image/jpeg,image/png" />
+            <div className="upload" onClick={s3upload}>
+              Upload Avatar 
             </div>
             <div className="field display_name">
               <label>Display Name</label>
