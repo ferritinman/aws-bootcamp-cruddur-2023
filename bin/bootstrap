@@ -9,6 +9,7 @@ ABS_PATH=$(readlink -f "$0")
 BIN_DIR=$(dirname $ABS_PATH)
 
 "$BIN_DIR"/db/setup
+"$BIN_DIR"/db/migrate
 "$BIN_DIR"/ddb/schema-load
 "$BIN_DIR"/ddb/seed
 
