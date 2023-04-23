@@ -25,9 +25,7 @@ export default function ProfileForm(props) {
       // }
       const res = await fetch(gateway_url, {
         method: "POST",
-   //     body: JSON.stringify(json),
         headers: {
-          'Origin': "https://3000-ferritinman-awsbootcamp-qkcviw282v3.ws-us95.gitpod.io", //process.env.REACT_APP_FRONTEND_URL,
           'Authorization': `Bearer ${access_token}`,
           'Accept': 'application/json',
           'Content-Type': 'application/json'
@@ -54,20 +52,22 @@ export default function ProfileForm(props) {
     
     console.log(filename,size,type)
     
-    const fileparts = filename.split('.')
-    const extension = fileparts[fileparts.length-1]
-    const presignedurl = await s3uploadkey(extension)
+    // const fileparts = filename.split('.')
+    // const extension = fileparts[fileparts.length-1]
+    const presignedUrl = await s3uploadkey()
+    console.log(presignedUrl)
 
     try {
       console.log('s3upload')
-      const res = await fetch(presignedurl, {
+      const res = await fetch(presignedUrl, {
         method: "PUT",
         body: file,
         headers: {
           'Content-Type': type
       }})
       if (res.status === 200) {
-        
+        console.log('presignedUrl: ', data)
+        return data.url;        
       } else {
         console.log(res)
       }
@@ -95,6 +95,7 @@ export default function ProfileForm(props) {
         }),
       });
       let data = await res.json();
+      console.log("ugh")
       if (res.status === 200) {
         setBio(null)
         setDisplayName(null)
@@ -139,10 +140,9 @@ export default function ProfileForm(props) {
             <div className="upload" onClick={s3uploadkey}>
               Upload Avatar Key
             </div>
+
             <input type="file" name="avatarupload" onChange={s3upload} accept="image/jpeg,image/png" />
-            <div className="upload" onClick={s3upload}>
-              Upload Avatar 
-            </div>
+            
             <div className="field display_name">
               <label>Display Name</label>
               <input
