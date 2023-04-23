@@ -9,10 +9,6 @@ def handler(event:, context:)
 
   obj = s3.bucket(bucket_name).object(object_key)
   url = obj.presigned_url(:put, expires_in: 60 * 5)
-  url
   body = {url: url}.to_json
-  {
-    status_code: 200, 
-    body: body 
-  }
+  body
 end
