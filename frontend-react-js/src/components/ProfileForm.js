@@ -4,20 +4,18 @@ import process from 'process';
 import {getAccessToken} from 'lib/CheckAuth';
 
 export default function ProfileForm(props) {
-  const [bio, setBio] = React.useState(0);
+  const [bio, setBio] = React.useState();
   const [displayName, setDisplayName] = React.useState(0);
 
   React.useEffect(()=>{
-    console.log('useEffects',props)
-    setBio(props.profile.bio);
+    setBio(props.profile.bio || '');
     setDisplayName(props.profile.display_name);
   }, [props.profile])
 
   const s3uploadkey = async (extension)=> {
     console.log('ext',extension)
     try {
-      const gateway_url = "https://tcv5z1x3qk.execute-api.ca-central-1.amazonaws.com/avatars/key_upload"
-      // const gateway_url = `${process.env.REACT_APP_API_GATEWAY_ENDPOINT_URL}/avatars/key_upload`
+      const gateway_url = `${process.env.REACT_APP_API_GATEWAY_ENDPOINT_URL}/avatars/key_upload`
       await getAccessToken()
       const access_token = localStorage.getItem("access_token")
       // const json = {
