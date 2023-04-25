@@ -146,6 +146,20 @@ Finally ended up with this, which was amazing!
 This makes a lot of more sense to me than the video solution (plus it actually works for me).  I hope its "correct", there are always more than one way to do things in cloud.
 
 Notes:
-- API Gateway | Develop | CORS requires new gitpod URL 
-- ProfileForm.js need new gitpod URL (I tried it without and it works)
+- API Gateway | Develop | CORS requires new gitpod URL on new gitpod environment
+- ProfileForm.js and CruddurAvatarUpload (Lambda) do not need CORS headers
 
+
+### Fix CORS Final AWS Lambda Layers
+
+The "CruddurAvatarUpload" Lambda function was unable to load the JWT library to get the cognito_user_uuid out of the token, so I created a Lambda layer to "import" the library for the function to use.  The JWT library was uploaded to AWS via a utility script.
+
+I had no issues following along. My Lambda function for "CruddurAvatarUpload" does not have the if/else block because I got the CORS working via API Gateway, so I dont get OPTIONS in my events.
+
+Hot tip: When creating output, create it as JSON so they will be easier to search
+
+### Render Avatar from CloudFront
+
+No issues following along with the video. 
+
+I believe I have an issue with hard coded usernames, but I have the avatar uploads working.  I was struggling in previous weeks (along with this week), so I have not yet fixed the "andrewbrown" and "bayko" users.
