@@ -24,7 +24,7 @@ from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.instrumentation.requests import RequestsInstrumentor
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
 from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from opentelemetry.sdk.trace.export import fBatchSpanProcessor
 from opentelemetry.sdk.trace.export import ConsoleSpanExporter, SimpleSpanProcessor
 
 # XRay
@@ -107,7 +107,7 @@ cors = CORS(
 
 @app.route('/api/health-check')
 def health_check():
-  return {'success': True}, 200
+  return {'success': True, "check": True}, 200
 
 #Rollbar
 rollbar_access_token = os.getenv('ROLLBAR_ACCESS_TOKEN')
