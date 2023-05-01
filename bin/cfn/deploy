@@ -10,4 +10,5 @@ aws cloudformation deploy \
   --stack-name "my-cluster" \
   --template-file $CFN_PATH \
   --no-execute-changeset \
+  --s3-bucket "cfn-artifacts-ferritinman" \
   --capabilities CAPABILITY_NAMED_IAM
