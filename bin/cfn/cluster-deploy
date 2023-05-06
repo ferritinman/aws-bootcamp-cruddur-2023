@@ -2,7 +2,7 @@
 
 set -e 
 
-CFN_PATH="/workspace/aws-bootcamp-cruddur-2023/aws/cfn/networking/template.yaml"
+CFN_PATH="/workspace/aws-bootcamp-cruddur-2023/aws/cfn/cluster/template.yaml"
 
 cfn-lint $CFN_PATH
 
@@ -10,6 +10,6 @@ aws cloudformation deploy \
   --stack-name "Cruddur" \
   --template-file $CFN_PATH \
   --no-execute-changeset \
-  --s3-bucket "cfn-artifacts-ferritinman" \
   --tags group=cruddur-cluster \
+  --s3-bucket "cfn-artifacts-ferritinman" \
   --capabilities CAPABILITY_NAMED_IAM
