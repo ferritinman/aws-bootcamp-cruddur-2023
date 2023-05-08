@@ -1,4 +1,4 @@
 [deploy]
-bucket = 'cfn-artifacts-artifacts'
+bucket = 'cfn-artifacts-ferritinman'
 region = 'ca-central-1'
 stack_name = 'CrdNet'
