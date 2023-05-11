@@ -48,4 +48,4 @@ def lambda_handler(event, context):
           'user_uuid': i['user_uuid']
         }
       )
-      print("CREATE via SAM ===>",response)
+      print("CREATE ===>",response)
