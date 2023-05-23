@@ -56,7 +56,9 @@ tasks:
   - name: thumbing-lambda
     command: |
       "${THEIA_WORKSPACE_ROOT}/bin/avatar/build"
-    
+  - name: extra-stuff
+    command: |
+      mkdir "${THEIA_WORKSPACE_ROOT}/tmp"   
 vscode:
   extensions:
     - 42Crunch.vscode-openapi
