@@ -10,8 +10,6 @@ I didn't type the files out and shamelessly cut and pasted most of the files fro
 
 Along with creating the CFN files, I followed along and diagrammed the architecture using Lucid charts.
 
-I am using my work account to do the diagrams so I didn't have any issues with the free tier shapes limit.
-
 ![Exported PNG](./assets/week10/ferritinman.png)
 
 [Lucid Read Only](https://lucid.app/lucidchart/c5dbc9a0-5b03-4477-9817-c90c42701152/edit?view_items=uGOUi-jRc1q~&invitationId=inv_86d25ee3-a8dd-4769-8b09-21e0c760d0ad)

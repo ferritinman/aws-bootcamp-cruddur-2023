@@ -1,12 +1,9 @@
-import './SigninPage.css';
+ import './SigninPage.css';
 import React from "react";
 import {ReactComponent as Logo} from '../components/svg/logo.svg';
 import { Link } from "react-router-dom";
 
 import { Auth } from 'aws-amplify';
-
-// [TODO] Authenication
-import Cookies from 'js-cookie'
 
 export default function SigninPage() {
 
@@ -24,7 +21,7 @@ export default function SigninPage() {
       window.location.href = "/"
     })
     .catch(error => { 
-      if (error.code == 'UserNotConfirmedException') {
+      if (error.code === 'UserNotConfirmedException') {
         window.location.href = "/confirm"
       }
       setErrors(error.message)
