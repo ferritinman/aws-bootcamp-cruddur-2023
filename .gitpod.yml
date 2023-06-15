@@ -58,7 +58,11 @@ tasks:
       "${THEIA_WORKSPACE_ROOT}/bin/avatar/build"
   - name: extra-stuff
     command: |
-      mkdir "${THEIA_WORKSPACE_ROOT}/tmp"   
+      mkdir "${THEIA_WORKSPACE_ROOT}/tmp"
+  - name: website-sync
+    before: |
+      gem install aws_s3_website_sync
+      gem install dotenv
 vscode:
   extensions:
     - 42Crunch.vscode-openapi
