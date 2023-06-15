@@ -8,6 +8,8 @@ tasks:
       cd $THEIA_WORKSPACE_ROOT
   - name: cfn
     before: |
+      bundle install
+      bundle update --bundle
       pip install cfn-lint
       cargo install cfn-guard
       gem install cfn-toml
