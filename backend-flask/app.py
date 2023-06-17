@@ -307,10 +307,10 @@ def data_search():
 @app.route("/api/activities", methods=['POST','OPTIONS'])
 @cross_origin()
 def data_activities():
-  access_token = extract_access_token(request.headers)
+  access_token = CognitoJwtToken.extract_access_token(request.headers)
 
   print(request.headers)
-  print("Access token: ", access_token)
+  print("acess token", access_token)
 
   try:
     claims = cognito_jwt_token.verify(access_token)
