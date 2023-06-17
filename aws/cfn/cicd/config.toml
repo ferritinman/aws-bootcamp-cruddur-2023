@@ -1,0 +1,11 @@
+[deploy]
+bucket = 'cfn-artifacts-ferritinman'
+region = 'ca-central-1'
+stack_name = 'CrdCicd'
+
+[parameters]
+ServiceStack = 'CrdServiceBackendFlask'
+ClusterStack = 'CrdCluster'
+GitHubBranch = 'prod'
+GithubRepo = 'aws-bootcamp-cruddur-2023'
+ArtifactBucketName = "codepipeline-cruddur-artifacts-ferritinman"

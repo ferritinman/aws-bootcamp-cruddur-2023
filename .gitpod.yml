@@ -1,4 +1,18 @@
 tasks:
+  - name: aws-sam
+    init: |
+      cd /workspace
+      wget https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip
+      unzip aws-sam-cli-linux-x86_64.zip -d sam-installation
+      sudo ./sam-installation/install
+      cd $THEIA_WORKSPACE_ROOT
+  - name: cfn
+    before: |
+      bundle install
+      bundle update --bundle
+      pip install cfn-lint
+      cargo install cfn-guard
+      gem install cfn-toml
   - name: aws-cli
     env:
       AWS_CLI_AUTO_PROMPT: on-partial
@@ -44,7 +58,13 @@ tasks:
   - name: thumbing-lambda
     command: |
       "${THEIA_WORKSPACE_ROOT}/bin/avatar/build"
-    
+  - name: extra-stuff
+    command: |
+      mkdir "${THEIA_WORKSPACE_ROOT}/tmp"
+  - name: website-sync
+    before: |
+      gem install aws_s3_website_sync
+      gem install dotenv
 vscode:
   extensions:
     - 42Crunch.vscode-openapi

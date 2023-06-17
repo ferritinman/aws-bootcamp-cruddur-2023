@@ -5,9 +5,6 @@ import { Link } from "react-router-dom";
 
 import { Auth } from 'aws-amplify';
 
-// [TODO] Authenication
-import Cookies from 'js-cookie'
-
 export default function SigninPage() {
 
   const [email, setEmail] = React.useState('');
@@ -24,7 +21,7 @@ export default function SigninPage() {
       window.location.href = "/"
     })
     .catch(error => { 
-      if (error.code == 'UserNotConfirmedException') {
+      if (error.code === 'UserNotConfirmedException') {
         window.location.href = "/confirm"
       }
       setErrors(error.message)

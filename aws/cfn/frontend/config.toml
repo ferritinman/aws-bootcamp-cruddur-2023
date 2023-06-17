@@ -1,0 +1,9 @@
+[deploy]
+bucket = 'cfn-artifacts-ferritinman'
+region = 'ca-central-1'
+stack_name = 'CrdFrontend'
+
+[parameters]
+CertificateArn = 'arn:aws:acm:us-east-1:818240358603:certificate/b10266b9-d858-4734-aa50-c9b70e160974'
+WwwBucketName = 'www.ferritinman.com'
+RootBucketName = 'ferritinman.com'
