@@ -307,10 +307,10 @@ def data_search():
 @app.route("/api/activities", methods=['POST','OPTIONS'])
 @cross_origin()
 def data_activities():
-  access_token = CognitoJwtToken.extract_access_token(request.headers)
+  access_token = extract_access_token(request.headers)
 
   print(request.headers)
-  print("acess token", access_token)
+  print("Access token: ", access_token)
 
   try:
     claims = cognito_jwt_token.verify(access_token)
@@ -323,7 +323,6 @@ def data_activities():
       return model['errors'], 422
     else:
       return model['data'], 200
-    return
   except TokenVerifyError as e:
       app.logger.debug(e)
       return {}, 401
