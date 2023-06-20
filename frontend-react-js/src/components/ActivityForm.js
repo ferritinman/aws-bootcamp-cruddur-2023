@@ -4,7 +4,6 @@ import process from 'process';
 import {ReactComponent as BombIcon} from './svg/bomb.svg';
 import {getAccessToken} from 'lib/CheckAuth.js'
 
-
 export default function ActivityForm(props) {
   const [count, setCount] = React.useState(0);
   const [message, setMessage] = React.useState('');
