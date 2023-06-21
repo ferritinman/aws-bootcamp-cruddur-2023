@@ -97,15 +97,43 @@ I did a few comparison of files to see if I messed up something in the files.  U
 
 ### Refactor to use JWT Decorator in Flask App
 
+I followed along with the video and refactored the backend-flask application to use a JWT token decorator reduce some code when obtaining the cognito user id.
 
 ###	Refactor App.py
 
+I followed along the video and refactored more of the backend-flask application to:
+* create a method to return HTTP 200 or 422 instead of repeating it for many methods
+* moved cloudwatch, cors, honeycomb, rollbar and xray initializations into a separate files making the code easier to read
 
 ### Refactor Flask Routes
 
+I followed along and refactored the app.py to be more readable by separating it into different routes/controllers
+
+- activities
+- general
+- messages
+- users
+
 ### Implement Replies for Posts
 
+In this video, I got the reply functionality working.  Bunch of stuff including adding migration scripts for incorrect column types, adding/modifying new queries and coding in Python and JS.
+
+#### Troubleshooting
+I had some issues because I did not have the correct order on the @cross_origin and @jwt_required. It wouldn't get past CORS because the JWT token was not being passed in.
+
+```python
+    # Correct version
+    @app.route("/api/messages", methods=['POST','OPTIONS'])
+    @cross_origin()
+    @jwt_required()
+    def data_create_message():
+        ...
+
+```
+
 ### Improved Error Handling for the app
+
+I think MessageForm.js has an error in it from the video.  "data" should be "payload_data" on lines 35 and 37.
 
 ### Activities Show Page
 
