@@ -5,6 +5,7 @@ export default function ActivityActionReply(props) {
     event.preventDefault()
     props.setReplyActivity(props.activity)
     props.setPopped(true)
+    return false;
   }
 
   let counter;
