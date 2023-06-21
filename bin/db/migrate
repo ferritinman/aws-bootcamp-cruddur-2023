@@ -32,18 +32,22 @@ last_successful_run = get_last_successful_run()
 
 migrations_path = os.path.abspath(os.path.join(current_path, '..', '..','backend-flask','db','migrations'))
 sys.path.append(migrations_path)
-migration_files = glob.glob(f"{migrations_path}/*")
+migration_files = glob.glob(f"{migrations_path}/*.py")
 
 for migration_file in migration_files:
+  print("****", migration_file)
   filename = os.path.basename(migration_file)
   module_name = os.path.splitext(filename)[0]
   match = re.match(r'^\d+', filename)
-
   if match:
     file_time = int(match.group())
-    if last_successful_run <= file_time:
-      mod = importlib.import_module(module_name)
-      print('=== running migration: ',module_name)
-      mod.migration.migrate()
-      timestamp = str(time.time()).replace(".","")
-      last_successful_run = set_last_successful_run(timestamp)
+    print(file_time)
+    # This if block is causing issues but not an issue right not because
+    # there is no conflicting scripts, also this should be ordered.
+    #if last_successful_run <= file_time:
+    mod = importlib.import_module(module_name)
+    print('=== running migration: ',module_name)
+    mod.migration.migrate()
+    timestamp = str(time.time()).replace(".","")
+    last_successful_run = set_last_successful_run(timestamp)
+    print('==== done migration ====')
