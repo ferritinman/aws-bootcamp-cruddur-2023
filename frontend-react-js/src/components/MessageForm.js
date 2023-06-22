@@ -29,14 +29,17 @@ export default function ActivityForm(props) {
       payload_data.message_group_uuid = params.message_group_uuid
     }
 
-    post(url, payload_data, setErrors, function(){
-      if (payload_data.message_group_uuid) {
-        console.log('redirect to message group')
-        window.location.href = `/messages/${payload_data.message_group_uuid}`
-      } else {
-        props.setMessages(current => [...current,payload_data]);
-      }   
-    })
+    post(url, payload_data, {
+      auth: true,
+      setErrors: setErrors, 
+      success: function(){
+        if (payload_data.message_group_uuid) {
+          console.log('redirect to message group')
+          window.location.href = `/messages/${payload_data.message_group_uuid}`
+        } else {
+          props.setMessages(current => [...current,payload_data]);
+        }   
+    }})
   }
 
   const textarea_onchange = (event) => {

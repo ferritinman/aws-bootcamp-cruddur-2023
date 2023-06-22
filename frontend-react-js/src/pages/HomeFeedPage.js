@@ -6,9 +6,9 @@ import DesktopSidebar     from 'components/DesktopSidebar';
 import ActivityFeed from 'components/ActivityFeed';
 import ActivityForm from 'components/ActivityForm';
 import ReplyForm from 'components/ReplyForm';
-import {checkAuth} from 'lib/CheckAuth.js'
-import {get} from 'lib/Requests';
 
+import {get} from 'lib/Requests';
+import {checkAuth} from 'lib/CheckAuth';
 
 export default function HomeFeedPage() {
   const [activities, setActivities] = React.useState([]);
@@ -20,11 +20,14 @@ export default function HomeFeedPage() {
 
   const loadData = async () => {
     const url = `${process.env.REACT_APP_BACKEND_URL}/api/activities/home`
-    get(url, null, function(data) {
-      setActivities(data)
+    get(url,{
+      auth: true,
+      success: function(data){
+        setActivities(data)
+      }
     })
-  };
-
+  }
+  
   React.useEffect(()=>{
     //prevents double call
     if (dataFetchedRef.current) return;
@@ -47,15 +50,12 @@ export default function HomeFeedPage() {
           activity={replyActivity} 
           popped={poppedReply} 
           setPopped={setPoppedReply} 
-          setActivities={setActivities} 
-          activities={activities} 
         />
         <div className='activity_feed'>
           <div className='activity_feed_heading'>
             <div className='title'>Home</div>
           </div>
           <ActivityFeed 
-            title="Home" 
             setReplyActivity={setReplyActivity} 
             setPopped={setPoppedReply} 
             activities={activities} 

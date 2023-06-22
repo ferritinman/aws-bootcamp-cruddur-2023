@@ -24,13 +24,12 @@ export default function ActivityShowPage() {
 
   const loadData = async () => {
     const url = `${process.env.REACT_APP_BACKEND_URL}/api/activities/@${params.handle}/status/${params.activity_uuid}`
-    get(url,{
+    get(url, {
       auth: false,
-      success: function(data){
+      success: function(data) {
         setActivity(data.activity)
         setReplies(data.replies)
-      }
-    })
+    }})
   }
 
   React.useEffect(()=>{
@@ -56,7 +55,7 @@ export default function ActivityShowPage() {
   return (
     <article>
       <DesktopNavigation user={user} active={'home'} setPopped={setPopped} />
-      <div className='content'>
+      <div className='content'> 
         <ActivityForm  
           popped={popped}
           setPopped={setPopped} 
