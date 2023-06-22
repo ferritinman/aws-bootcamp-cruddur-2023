@@ -1,6 +1,6 @@
 import './ActivityShowPage.css';
 import React from "react";
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import DesktopNavigation  from 'components/DesktopNavigation';
 import DesktopSidebar     from 'components/DesktopSidebar';
@@ -21,6 +21,11 @@ export default function ActivityShowPage() {
   const [user, setUser] = React.useState(null);
   const dataFetchedRef = React.useRef(false);
   const params = useParams();
+
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1)
+  }
 
   const loadData = async () => {
     const url = `${process.env.REACT_APP_BACKEND_URL}/api/activities/@${params.handle}/status/${params.activity_uuid}`
@@ -63,11 +68,13 @@ export default function ActivityShowPage() {
         />
         <ReplyForm 
           activity={replyActivity} 
-          popped={poppedReply} 
+          popped={poppedReply}
+          setReplies={setReplies}
           setPopped={setPoppedReply} 
         />
         <div className='activity_feed'>
-          <div className='activity_feed_heading'>
+          <div className='activity_feed_heading flex'>
+          <div className="back" onClick={goBack}>&larr;</div>	
             <div className='title'>Crud</div>
           </div>
           {el_activity}
