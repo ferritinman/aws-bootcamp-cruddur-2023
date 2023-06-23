@@ -133,8 +133,42 @@ I had some issues because I did not have the correct order on the @cross_origin 
 
 ### Improved Error Handling for the app
 
+I added error handling while moving the request calls to a separate file to remove repetitive code.
+
+#### Potential issue
 I think MessageForm.js has an error in it from the video.  "data" should be "payload_data" on lines 35 and 37.
 
 ### Activities Show Page
 
+I followed along with the video and refactored code to implement more functionality for "Activities".  I reworked that "Request.js" a bit more so it is more flexible.
+
+#### Troubleshooting
+
+I noticed the following warning in the Chrome console.
+
+![](./assets/weekx/validateDOMNesting.png)
+
+I found this Stack Overflow link and it describes the issue I'm having where its rendering <a><a></a></a> as shown from Chrome HTML.  My users are still "andrewbrown" and "bayko".
+
+![](./assets/weekx/validateDOMNesting-html.png)
+
+[https://stackoverflow.com/questions/55625431/warning-validatedomnesting-a-cannot-appear-as-a-descendant-of-a](https://stackoverflow.com/questions/55625431/warning-validatedomnesting-a-cannot-appear-as-a-descendant-of-a)
+
+I'm not sure why on the video I don't see the warning being shown.
+
+My fix is here [https://github.com/ferritinman/aws-bootcamp-cruddur-2023/blob/c63bf947768bfc90aa4e9f7b4593bdc7e1bd3ded/frontend-react-js/src/components/ActivityItem.js](https://github.com/ferritinman/aws-bootcamp-cruddur-2023/blob/c63bf947768bfc90aa4e9f7b4593bdc7e1bd3ded/frontend-react-js/src/components/ActivityItem.js)
+
 ### More General Cleanup Part 1 and Part 2
+
+I followed along the cleanup videos and accomplished the following
+
+* Cleaned up the UI and functionality of "activities" and "messages"
+* The migrate script was corrected from my earlier hack of the script
+* Changed the backend-flask application to take in an environment variable for the DynamoDB tablename because it gets generated from CFN
+* For security, a machine_user was created (via CFN) and given permissions to access the DynamnoDB table for messages
+  * Programmatic access keys were generated and placed updated in Parameter store
+* Random bug fixes from bad code
+
+## Thanks
+
+Thank you Andrew for providing this bootcamp.  The knowledge I gained through this bootcamp is definately valuable for my future professional work.  The content was amazing and the debugging parts are definately the most helpful in real-life situations.
