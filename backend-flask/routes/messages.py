@@ -55,4 +55,4 @@ def load(app):
                 cognito_user_id=g.cognito_user_id
             )
 
-            return model_json(model)
+        return model_json(model)
