@@ -6,3 +6,4 @@ stack_name = 'CrdServiceBackendFlask'
 [parameters]
 EnvFrontendUrl = 'https://ferritinman.com'
 EnvBackendUrl = 'https://api.ferritinman.com'
+DDBMessageTable = 'CrdDdb-DynamoDBTable-6M6Z0OSGP749'

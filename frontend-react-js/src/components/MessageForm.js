@@ -8,7 +8,7 @@ import FormErrors from 'components/FormErrors';
 export default function ActivityForm(props) {
   const [count, setCount] = React.useState(0);
   const [message, setMessage] = React.useState('');
-  const [errors, setErrors] = React.useState([]);
+  const [errors, setErrors] = React.useState('');
   const params = useParams();
 
   const classes = []
@@ -20,7 +20,7 @@ export default function ActivityForm(props) {
   const onsubmit = async (event) => {
     event.preventDefault();
 
-    const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/messages`
+    const url = `${process.env.REACT_APP_BACKEND_URL}/api/messages`
     let payload_data = { 'message': message }
     
     if (params.handle) {
@@ -32,7 +32,7 @@ export default function ActivityForm(props) {
     post(url, payload_data, {
       auth: true,
       setErrors: setErrors, 
-      success: function(){
+      success: function(data) {
         if (payload_data.message_group_uuid) {
           console.log('redirect to message group')
           window.location.href = `/messages/${payload_data.message_group_uuid}`

@@ -1,7 +1,5 @@
 # FREE AWS Cloud Project Bootcamp
 
-![](https://codebuild.ca-central-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiZWlueVJjWENrL3c1dkM1OXp4OXo4TUw3RkpSZ0c0aHM2amtOdW01ckRSckhqVUdnQ3RON3RKUHJpcE1HZVdnWkgyallKem9JWU1ubnpXSlVTTzNzbXBnPSIsIml2UGFyYW1ldGVyU3BlYyI6IlBrNFNycWhQNXh3cml4WTkiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=main)
-
 - Application: Cruddur
 - Cohort: 2023-A1
 
@@ -19,17 +17,14 @@ At the start of the bootcamp you need to create a new Github Repository from thi
 
 The `/journal` directory contains
 
-- [ ] [Week 0](journal/week0.md)
-- [ ] [Week 1](journal/week1.md)
-- [ ] [Week 2](journal/week2.md)
-- [ ] [Week 3](journal/week3.md)
-- [ ] [Week 4](journal/week4.md)
-- [ ] [Week 5](journal/week5.md)
-- [ ] [Week 6](journal/week6.md)
-- [ ] [Week 7](journal/week7.md)
-- [ ] [Week 8](journal/week8.md)
-- [ ] [Week 9](journal/week9.md)
-- [ ] [Week 10](journal/week10.md)
-- [ ] [Week 11](journal/week11.md)
-- [ ] [Week 12](journal/week12.md)
-- [ ] [Week 13](journal/week13.md)
+- [x] [Week 0](journal/week0.md)
+- [x] [Week 1](journal/week1.md)
+- [x] [Week 2](journal/week2.md)
+- [x] [Week 3](journal/week3.md)
+- [x] [Week 4](journal/week4.md)
+- [x] [Week 5](journal/week5.md)
+- [x] [Week 6-7](journal/week6.md)
+- [x] [Week 8](journal/week8.md)
+- [x] [Week 9](journal/week9.md)
+- [x] [Week 10-11](journal/week10.md)
+- [ ] [Week x](journal/weekx.md)

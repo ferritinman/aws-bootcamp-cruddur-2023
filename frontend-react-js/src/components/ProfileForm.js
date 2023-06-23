@@ -8,6 +8,7 @@ import {put} from 'lib/Requests';
 export default function ProfileForm(props) {
   const [bio, setBio] = React.useState();
   const [displayName, setDisplayName] = React.useState(0);
+  const [errors, setErrors] = React.useState('');
 
   React.useEffect(()=>{
     setBio(props.profile.bio || '');
@@ -82,7 +83,7 @@ export default function ProfileForm(props) {
   const onsubmit = async (event) => {
     event.preventDefault();
 
-    const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/profile/update`
+    const url = `${process.env.REACT_APP_BACKEND_URL}/api/profile/update`
     const payload_data = {
       bio: bio,
       display_name: displayName
